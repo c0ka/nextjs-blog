@@ -6,7 +6,13 @@ import Layout from "../../components/layout";
 import utilStyles from '../../styles/utils.module.css'
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
-export default function Post({ postData }) {
+export default function Post({ postData }: {
+  postData: {
+    id: string
+    title: string
+    date: string
+    contentHtml: string
+  }}) {
   return (
     <Layout>
       <Head>
@@ -33,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async function() {
 }
 
 export const getStaticProps: GetStaticProps  = async function({ params }) {
-  const postData = await getPostData(params.id as string)
+  const postData = await getPostData(params!.id as string)
 
   return {
     props: {
