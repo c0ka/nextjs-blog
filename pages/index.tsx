@@ -4,9 +4,16 @@ import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
-import Date from '../components/data'
+import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
-export default function Home({ allPostsData }) {
+interface PostData {
+  date: string
+  title: string
+  id: string
+}
+
+export default function Home({ allPostsData }: { allPostsData: PostData[]}) {
   return (
     <Layout home>
       <Head>
@@ -18,7 +25,7 @@ export default function Home({ allPostsData }) {
           <a href="email:julianhy@outlook.com">Email</a>.</p>
         <p>
           (This is a sample website - you'll be building a site like this on{' '}
-          <a href="https://nextjs.org">our Next.js tutorial</a>.)
+          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
@@ -39,8 +46,8 @@ export default function Home({ allPostsData }) {
   )
 }
 
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData: PostData[] = getSortedPostsData()
 
   return {
     props: {
