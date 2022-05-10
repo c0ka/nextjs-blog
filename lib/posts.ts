@@ -18,7 +18,7 @@ export function getSortedPostsData() {
 
     return {
       id,
-      ...(matterResult.data as { date: string, title: string }),
+      ...(matterResult.data as { date: string; title: string }),
     }
   })
 
@@ -39,8 +39,8 @@ export function getAllPostIds() {
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, '')
-      }
+        id: fileName.replace(/\.md$/, ''),
+      },
     }
   })
 }
@@ -51,15 +51,13 @@ export async function getPostData(id: string) {
 
   const matterResult = matter(fileContent)
 
-  const processedContent = await remark()
-    .use(html)
-    .process(matterResult.content)
+  const processedContent = await remark().use(html).process(matterResult.content)
 
   const contentHtml = processedContent.toString()
 
   return {
     id,
     contentHtml,
-    ...matterResult.data as { date: string, title: string }
+    ...(matterResult.data as { date: string; title: string }),
   }
 }

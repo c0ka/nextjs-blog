@@ -9,16 +9,12 @@ import React from 'react'
 const name = 'Julian Hu'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home 
-}: { children: React.ReactNode, home?: boolean}) {
+export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
   return (
     <div className={styles.container}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
+        <meta name="description" content="Learn how to build a personal website using Next.js" />
         <meta
           property="og:image"
           content={`https://og-image.vercel.app/${encodeURI(siteTitle)}
@@ -31,16 +27,28 @@ export default function Layout({ children, home
       <header className={styles.header}>
         {home ? (
           <>
-            <Image priority src="/images/profile.jpeg" className={utilStyles.borderCircle}
-              height={144} width={144} alt={name} />
+            <Image
+              priority
+              src="/images/profile.jpeg"
+              className={utilStyles.borderCircle}
+              height={144}
+              width={144}
+              alt={name}
+            />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
         ) : (
           <>
             <Link href="/">
               <a>
-                <Image priority src="/images/profile.jpeg" className={utilStyles.borderCircle}
-                  height={108} width={108} alt={name}/>
+                <Image
+                  priority
+                  src="/images/profile.jpeg"
+                  className={utilStyles.borderCircle}
+                  height={108}
+                  width={108}
+                  alt={name}
+                />
               </a>
             </Link>
             <h2 className={utilStyles.headingLg}>
@@ -54,9 +62,11 @@ export default function Layout({ children, home
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/"><a>Back to home</a></Link>
+          <Link href="/">
+            <a>Back to home</a>
+          </Link>
         </div>
       )}
     </div>
-  ) 
+  )
 }

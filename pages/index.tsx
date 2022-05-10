@@ -1,16 +1,16 @@
-import Head from "next/head";
-import Link from "next/link";
+import Head from 'next/head'
+import Link from 'next/link'
 
-import Layout, { siteTitle } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import Date from "../components/date";
-import { GetStaticProps } from "next";
+import Layout, { siteTitle } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
+import { getSortedPostsData } from '../lib/posts'
+import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
 interface PostData {
-  date: string;
-  title: string;
-  id: string;
+  date: string
+  title: string
+  id: string
 }
 
 export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
@@ -21,12 +21,11 @@ export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Hello, I&aposm <b>Julian</b>. I&aposm a international traveler and a
-          translator (English/Chinese). You can contact me on{" "}
-          <a href="email:julianhy@outlook.com">Email</a>.
+          Hello, I&aposm <b>Julian</b>. I&aposm a international traveler and a translator
+          (English/Chinese). You can contact me on <a href="email:julianhy@outlook.com">Email</a>.
         </p>
         <p>
-          (This is a sample website - you&aposll be building a site like this on{" "}
+          (This is a sample website - you&aposll be building a site like this on{' '}
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
@@ -47,15 +46,15 @@ export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
         </ul>
       </section>
     </Layout>
-  );
+  )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData: PostData[] = getSortedPostsData();
+  const allPostsData: PostData[] = getSortedPostsData()
 
   return {
     props: {
       allPostsData,
     },
-  };
-};
+  }
+}
