@@ -21,11 +21,11 @@ export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Hello, I&aposm <b>Julian</b>. I&aposm a international traveler and a translator
+          Hello, I&apos;m <b>Julian</b>. I&apos;m a international traveler and a translator
           (English/Chinese). You can contact me on <a href="email:julianhy@outlook.com">Email</a>.
         </p>
         <p>
-          (This is a sample website - you&aposll be building a site like this on{' '}
+          (This is a sample website - you&apos;ll be building a site like this on{' '}
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
