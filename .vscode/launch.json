@@ -10,7 +10,7 @@
       "request": "launch",
       "command": "npm run dev",
       "console": "integratedTerminal",
-      "serverReadyAction":{
+      "serverReadyAction": {
         "action": "debugWithChrome",
         "pattern": "started server on .+, url: (https?://.+)",
         "uriFormat": "%s",
@@ -22,9 +22,9 @@
       "name": "Next.js: debug server-side",
       "type": "node-terminal",
       "request": "launch",
-      "command": "npm run dev",
+      "command": "npm run dev"
     },
-    
+
     {
       "name": "Next.js: debug client-side",
       "type": "pwa-chrome",

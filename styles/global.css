@@ -4,7 +4,7 @@
 
 html,
 body {
-  @apply text-lg
+  @apply text-lg;
 }
 
 @layer base {
