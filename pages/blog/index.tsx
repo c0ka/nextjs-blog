@@ -1,18 +1,12 @@
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 
-import Layout, { siteTitle } from '../../components/layout'
 import { getSortedPostsData } from '../../lib/posts'
-import Date from '../../components/date'
-import { GetStaticProps } from 'next'
+import PostType from '../../types/post'
+import Layout from '../../components/layout'
 
-interface PostData {
-  date: string
-  title: string
-  id: string
-}
-
-export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
+export default function Home({ allPostsData }: { allPostsData: PostType[] }) {
   return (
     <Layout>
       <Head>
@@ -21,14 +15,16 @@ export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
       <section className="prose prose-slate dark:prose-invert">
         <h2 className="text-2xl my-4">Blog</h2>
         <ul>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className="mb-5" key={id}>
-              <Link href={`/blog/${id}`}>
+          {allPostsData.map(({ slug, date, title, tags, url }) => (
+            <li className="mb-5" key={slug}>
+              <Link href={`/blog/${url}`}>
                 <a>{title}</a>
               </Link>
               <br />
               <small className="text-slate-600">
-                <Date dateString={date} />
+                {date}
+                <br />
+                tags: {tags?.join(', ')}
               </small>
             </li>
           ))}
@@ -39,7 +35,7 @@ export default function Home({ allPostsData }: { allPostsData: PostData[] }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData: PostData[] = getSortedPostsData()
+  const allPostsData: PostType[] = getSortedPostsData('_blog')
 
   return {
     props: {
