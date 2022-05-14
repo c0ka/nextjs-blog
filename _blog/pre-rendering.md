@@ -1,6 +1,16 @@
 ---
 title: 'Two Forms of Pre-rendering'
+description: Introducing the server-side rendering technology.
+author: Vercel
+author_url: https://github.com/vercel
+author_image_url: https://github.com/vercel.png
+image:
+thumb: 
+tags:
+  - react
+  - programming
 date: '2020-01-01'
+toc_depth: 3
 ---
 
 Next.js 有两种预渲染模式： **静态生成** 和 **服务器端生成**。两者的区别是在**何时**生成页面的 HTML。

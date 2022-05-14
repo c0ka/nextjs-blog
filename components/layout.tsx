@@ -3,8 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import useTheme from '../lib/use-theme.hook'
+import Footer from './footer'
+import Nav from './nav'
 
-const name = 'Julian Hu'
 export const siteTitle = 'Next.js Sample Website'
 
 interface Props {
@@ -32,52 +33,11 @@ export default function Layout(props: Props) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-
-      <header className="flex flex-col items-center">
-        {!hideHeader ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpeg"
-              className="rounded-full"
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className="text-slate-900 dark:text-slate-200 text-4xl font-extrabold tracking-tight my-4">{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a>
-                <Image
-                  priority
-                  src="/images/profile.jpeg"
-                  className="rounded-full"
-                  height={108}
-                  width={108}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className="text-slate-900 dark:text-slate-200 text-2xl my-4">
-              <Link href="/">
-                <a className="text-inherit">{name}</a>
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
-
+      {!hideHeader && <Nav />}
+      
       <main>{children}</main>
       
-      {!hideFooter && (
-        <footer className="mt-12">
-          <Link href="/">
-            <a>Back to home</a>
-          </Link>
-        </footer>
-      )}
+      {!hideFooter && <Footer />}
     </div>
   )
 }
