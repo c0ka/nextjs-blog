@@ -4,6 +4,7 @@ import Date from '../../components/date'
 import Layout from '../../components/layout'
 
 import { getAllPostIds, getPostData } from '../../lib/posts'
+import { useEffect } from 'react'
 
 export default function Post({
   postData,
@@ -16,11 +17,11 @@ export default function Post({
   }
 }) {
   return (
-    <Layout>
+    <Layout hideHeader={true}>
       <Head>
         <title>{postData.title}</title>
       </Head>
-      <article className="prose">
+      <article className="prose prose-slate dark:prose-invert">
         <h1>{postData.title}</h1>
         <div>
           <Date dateString={postData.date} />

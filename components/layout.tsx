@@ -1,13 +1,23 @@
 import Head from 'next/head'
 import Image from 'next/image'
-
 import Link from 'next/link'
-import React from 'react'
+
+import useTheme from '../lib/use-theme.hook'
 
 const name = 'Julian Hu'
 export const siteTitle = 'Next.js Sample Website'
 
-export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
+interface Props {
+  hideHeader?: boolean
+  hideFooter?: boolean
+  children: React.ReactNode
+}
+
+export default function Layout(props: Props) {
+  const { hideHeader = false, hideFooter = false, children } = props
+
+  useTheme()
+
   return (
     <div className="max-w-xl mx-auto mt-12 mb-24 px-4">
       <Head>
@@ -22,8 +32,9 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+
       <header className="flex flex-col items-center">
-        {home ? (
+        {!hideHeader ? (
           <>
             <Image
               priority
@@ -33,7 +44,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
               width={144}
               alt={name}
             />
-            <h1 className="text-4xl font-extrabold tracking-tighter my-4">{name}</h1>
+            <h1 className="text-slate-900 dark:text-slate-200 text-4xl font-extrabold tracking-tight my-4">{name}</h1>
           </>
         ) : (
           <>
@@ -49,7 +60,7 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
                 />
               </a>
             </Link>
-            <h2 className="text-2xl my-4">
+            <h2 className="text-slate-900 dark:text-slate-200 text-2xl my-4">
               <Link href="/">
                 <a className="text-inherit">{name}</a>
               </Link>
@@ -57,13 +68,15 @@ export default function Layout({ children, home }: { children: React.ReactNode; 
           </>
         )}
       </header>
+
       <main>{children}</main>
-      {!home && (
-        <div className="mt-12">
+      
+      {!hideFooter && (
+        <footer className="mt-12">
           <Link href="/">
             <a>Back to home</a>
           </Link>
-        </div>
+        </footer>
       )}
     </div>
   )
