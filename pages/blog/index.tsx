@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { getSortedPostsData } from '../../lib/posts'
-import PostType from '../../types/post'
+import PostType from '../../types/post-type'
 import Layout from '../../components/layout'
 
 export default function Home({ allPostsData }: { allPostsData: PostType[] }) {

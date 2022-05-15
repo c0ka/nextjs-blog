@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 
-import PostType from '../types/post'
+import PostType from '../types/post-type'
 import { generateReadingTime } from '../lib/helpers'
 
 // store different type of posts in corresponding directory

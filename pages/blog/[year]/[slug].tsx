@@ -8,9 +8,12 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next'
 
-import PostType from '../../../types/post'
+import PostType from '../../../types/post-type'
 import Layout from '../../../components/layout'
-import { getAllPostPaths, getPostData } from '../../../lib/posts'
+import { getAllPostPaths, getPostData, getSortedPostsData } from '../../../lib/posts'
+
+// table of contents extractor
+const toc = require('markdown-toc')
 
 // Define custom components/renderers to pass to MDX,
 // then pass property `components={components}` into <MDXRemote />
@@ -19,23 +22,23 @@ import { getAllPostPaths, getPostData } from '../../../lib/posts'
 //   TestComponent: dynamic(() => import('../../../components/footer')),
 // }
 
-const toc = require('markdown-toc')
 
+// todo: display toc snippet
 export default function PostPage({
   mdxSource, toc
 }) {
   return (
-    <Layout hideHeader={false}>
+    <Layout>
       <Head>
         <title>{mdxSource.frontmatter.title}</title>
       </Head>
       <article className="prose prose-slate dark:prose-invert">
         <h1>{mdxSource.frontmatter.title}</h1>
-        <div>
+        <div className="mb-4">
           {mdxSource.frontmatter.date}
         </div>
-        <div>
-          <MDXRemote {...mdxSource} />
+        <div className="wrapper">
+          <MDXRemote {...mdxSource} lazy />
         </div>
       </article>
     </Layout>
@@ -51,6 +54,7 @@ export const getStaticPaths: GetStaticPaths = async function () {
   }
 }
 
+// todo: lazy hydration in serialize
 export const getStaticProps: GetStaticProps = async function ({ params }: any) {
   const postContent = await getPostData(params.slug, '_blog')
 
@@ -62,11 +66,22 @@ export const getStaticProps: GetStaticProps = async function ({ params }: any) {
     parseFrontmatter: true,
   })
 
-  const tocMaxDepth = (mdxSource.frontmatter as PostType).toc_depth?? 2
+  const relatedPosts = getSortedPostsData('_blog', 5, (mdxSource.frontmatter as PostType).tags)
+
+  const allPosts = getSortedPostsData('_blog')
+
+  const currentIndex = allPosts.map( e => e.slug ).indexOf(params.slug)
+
+  const nextPost = allPosts[currentIndex + 1]
+  const prevPost = allPosts[currentIndex - 1]
 
   return { props: {
+    slug: params.slug,
     mdxSource,
-    toc: toc(postContent, { maxdepth: tocMaxDepth }),
+    toc: toc(postContent, { maxdepth: (mdxSource.frontmatter as PostType).toc_depth?? 2 }),
+    prevPost: currentIndex === 0 ? null : prevPost ? prevPost : null,
+    nextPost: currentIndex === allPosts.length ? null : nextPost ? nextPost : null,
+    relatedPosts,
     }
   }
 }
