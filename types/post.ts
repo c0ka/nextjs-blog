@@ -6,6 +6,7 @@ type PostType = {
   title: string
   description: string
   url: string,
+  toc_depth? : number
   thumb?: string
   date?: string
   coverImage?: string

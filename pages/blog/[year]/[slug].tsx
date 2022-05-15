@@ -19,21 +19,23 @@ import { getAllPostPaths, getPostData } from '../../../lib/posts'
 //   TestComponent: dynamic(() => import('../../../components/footer')),
 // }
 
+const toc = require('markdown-toc')
+
 export default function PostPage({
-  source, postData
-}: { source: any, postData: PostType }) {
+  mdxSource, toc
+}) {
   return (
     <Layout hideHeader={false}>
       <Head>
-        <title>{postData.title}</title>
+        <title>{mdxSource.frontmatter.title}</title>
       </Head>
       <article className="prose prose-slate dark:prose-invert">
-        <h1>{postData.title}</h1>
+        <h1>{mdxSource.frontmatter.title}</h1>
         <div>
-          postdata.date
+          {mdxSource.frontmatter.date}
         </div>
         <div>
-          <MDXRemote {...source} />
+          <MDXRemote {...mdxSource} />
         </div>
       </article>
     </Layout>
@@ -51,20 +53,20 @@ export const getStaticPaths: GetStaticPaths = async function () {
 
 export const getStaticProps: GetStaticProps = async function ({ params }: any) {
   const postContent = await getPostData(params.slug, '_blog')
-  const { data, content } = matter(postContent)
 
-  const mdxSource = await serialize(content, {
+  const mdxSource = await serialize(postContent, {
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypeSlug],
     },
-    scope: data
+    parseFrontmatter: true,
   })
 
-  return {
-    props: {
-      source: mdxSource,
-      postData: data,
-    },
+  const tocMaxDepth = (mdxSource.frontmatter as PostType).toc_depth?? 2
+
+  return { props: {
+    mdxSource,
+    toc: toc(postContent, { maxdepth: tocMaxDepth }),
+    }
   }
 }
