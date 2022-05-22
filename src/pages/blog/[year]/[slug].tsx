@@ -189,6 +189,7 @@ export const getStaticPaths: GetStaticPaths = async function () {
 }
 
 // todo: lazy hydration in serialize
+// todo: add params type: GetStaticPropsContext
 export const getStaticProps: GetStaticProps = async function ({ params }: any) {
   const postContent = await getPostData(params.slug, '_blog')
 
