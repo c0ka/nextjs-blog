@@ -1,4 +1,4 @@
-import Author from './author'
+import Author from './author.type'
 
 // todo: include author infos?
 type PostType = {
