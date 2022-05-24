@@ -1,0 +1,141 @@
+---
+title: 'React useContext with Function Component and HOC'
+description: Introducing the React useContext Api.
+author: c0ka
+author_url: https://github.com/c0ka
+author_image_url: https://github.com/c0ka.png
+image:
+thumb: 
+tags:
+  - react
+  - programming
+date: '2021-02-06'
+toc_depth: 3
+---
+
+## Context.js
+
+```javascript
+import React, { createContext, useState, useContext } from "react"
+
+// 定义 Context 的数据结构
+const defaultThemeContext = {
+  theme: { color: "" },
+  switchTheme: () => {},
+}
+
+// 新建 Context
+export const ThemeContext = createContext(defaultThemeContext)
+
+// 在 ThemeContext.Provider 的基础上自定义 Provider 组件
+// 管理相关的 state，而不是在上层组件中管理。更好的抽象！
+export const ThemeProvider = (props) => {
+  const [state, setState] = useState({
+    styles: {
+      ...defaultContext,
+
+      switchTheme: (theme) =>
+        setState((state) => ({
+          styles: {
+            ...state.styles,
+            theme,
+          },
+        })),
+    },
+  })
+
+  console.log("render ThemeProvider")
+
+  return (
+    <ThemeContext.Provider value={state.styles}>
+      {props.children}
+    </Context.Provider>
+  )
+}
+
+// HOC 函数，为组件包装 Context 环境后返回一个新组件
+export const withThemeContext = (Component) => {
+  return (props) => {
+    const ctx = useContext(ThemeContext)
+    return (
+      <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme} />
+      switchTheme: (theme) => (
+        setState(state => ({
+          styles: { 
+            ...state.styles, 
+            theme,
+            },
+          })
+        ))
+      },
+    });
+
+    console.log("render ThemeProvider");
+
+    return (
+      <ThemeContext.Provider value={state.styles } >
+        {props.children}
+      </Context.Provider>
+    )
+  }
+
+// HOC 函数，为组件包装 Context 环境后返回一个新组件
+export const withThemeContext = Component => {
+  return props => {
+    const ctx = useContext(ThemeContext);
+    return (
+      <Component {...props} theme={ctx.theme} switchTheme={ctx.switchTheme}/>
+    )
+  }
+}
+```
+
+## App.js
+```javascript
+import React from "react"
+import { ThemeProvider, withThemeContext } from "./Context"
+
+const redTheme = {
+  color: "red",
+}
+
+const greenTheme = {
+  color: "green",
+}
+
+function Header() {
+  console.log("render Header")
+  return <h1>Hello CodeSandbox</h1>
+}
+
+// Content 组件内可以使用 Context 的数据和方法
+function Content(props) {
+  const { theme, switchTheme } = props
+
+  console.log("render Content")
+  return (
+    <>
+      <h1 style={theme}>Hello world</h1>
+      <button onClick={() => switchTheme(redTheme)}>Red Theme</button>
+      <button onClick={() => switchTheme(greenTheme)}>Green Theme</button>
+    </>
+  )
+
+}
+
+const WithContext = withThemeContext(Content)
+
+function App() {
+  console.log("render App");
+  return (
+    <ThemeProvider>
+      <div className="App">
+        <Header />
+        <WithContext />
+      </div>
+    </ThmProvider>
+  )
+}
+
+export default App;
+```

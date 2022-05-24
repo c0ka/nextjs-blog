@@ -1,5 +1,8 @@
-// get reading time
-// returns :string
+/**
+ * Generate file's reading time
+ * @param text
+ * @returns
+ */
 export const generateReadingTime = (text: string) => {
   const wordsPerMinute = 200
   const noOfWords = text.split(/\s/g).length

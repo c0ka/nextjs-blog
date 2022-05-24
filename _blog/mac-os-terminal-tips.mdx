@@ -1,0 +1,70 @@
+---
+title: 'Mac OS Terminal 常用指令与小技巧'
+description: 
+author: c0ka
+author_url: https://github.com/c0ka
+author_image_url: https://github.com/c0ka.png
+image:
+thumb: 
+tags:
+  - osx
+  - linux
+date: '2016-10-26'
+toc_depth: 3
+---
+
+`Option + ⽅向鍵`
+可快速在⻑⾧長指令內，做遊標的移動
+
+`pwd`
+显示当前工作目录
+
+`!`
+重复上一个执行过，且开头相同的指令 ex. !redis > redis-server
+
+`ls`
+列出当前目录的文件系统
+- 参数 -al 全部文件（含隐藏文件）和文件属性
+- 参数 -h 转换为可读性更好的单位 (B,K,M)
+
+`chown`
+可以同时更改文件所有者和群组  ex. chown user:group file
+
+`chmod`
+更改文件的权限  ex. chmod 777 mylog < 最坏示范； chmod -R 755 htdoc < Web 常用权限
+
+- 权限格式：rwx 读取权限 Readable、写入权限 writable、执行权限 Exacutable
+- 权限格式：drwxrwxrwx 是否目录、所有者权限 Owner、群组权限 Group、其它角色权限 Other
+- 权限格式：1257 每个区块的权限总和，0 无权限、2 执行权限、5 读取+执行、7 读取+写入+执行
+
+`-r/R` Recursive 递归
+对目录及目录所属所有层级的子目录和文件执行指令
+
+`rm` - remove
+只能删除文件，强制递归可以删除所有指定的文件、文件夹和子文件夹。 ex. rm -Rf test/ < 非常危险
+
+`touch`
+更改文件的时间戳（存取时间和更改时间），常用作快速新建文件。
+
+`tail`
+只显示最后10行内容
+- 参数 -n 指定显示的行数
+- 参数 -f 强制终端持续显示更新的信息
+
+`&` 
+执行程序的指令后面加 & 符号，可以不锁定终端。如果程序有输出信息，仍然会在终端上显示。  ex. redis-server&
+
+`>`
+执行程序的指令后面加 > 符号，可以重定向程序的输出信息。ex. redis-server > /dev/null
+
+`ps` - Process Status
+显示当前使用者执行的程序进程。加 aux 参数，可以显示所有系统进程 ex. ps aux
+
+`grep` - Globally Search a Regular Expression and Print
+字符串搜索、过滤工具，支持正则表达式。 ex. grep apple fruitlist.txt
+
+`|` 管道指令（ pipe ）
+会把左边的执行结果输出到右边。 ex. ps aux | grep redis
+
+`kill` 
+关闭系统程序，后面通常加上 PID。正常关闭：15；强制关闭：9；ex. kill -9 5568

@@ -1,24 +1,17 @@
 import Author from './author.type'
+import FrontMatter from './frontmatter.type'
 
-// todo: include author infos?
 type PostType = {
-  slug?: string
-  title: string
-  description: string
-  url: string,
-  toc_depth? : number
-  thumb?: string
-  date?: string
-  coverImage?: string
-  author?: string
-  excerpt?: string
-  ogImage?: { url: string }
-  content?: string
-  image?: string
-  readingTime?: string
-  tags?: string[]
-  logo?: string
-  hideAuthor?: boolean
+  slug: string
+  readingTime: string
+  url: string
+  frontMatter: FrontMatter
+  compiledSource: string
+  scope: Record<string,unknown> | undefined
+  toc?: any
+  prevPost?: PostType
+  nextPost?: PostType
+  relatedPosts?: PostType[]
 }
 
 export default PostType
