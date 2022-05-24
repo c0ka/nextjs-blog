@@ -1,14 +1,14 @@
-import { MDXRemote } from 'next-mdx-remote'
-
 import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import { MDXRemote } from 'next-mdx-remote'
 
-import PostType from '../../../types/post.type'
-import Layout from '../../../components/layout'
 import { getAllPostPaths, getPostContent, getSortedPostsData } from '../../../lib/posts'
+import PostType from '../../../types/post.type'
+
+import Layout from '../../../components/layout'
 import NextCard from '../../../components/next-card'
 import { FileTextIcon } from '@radix-ui/react-icons'
 
@@ -169,15 +169,14 @@ export const getStaticPaths: GetStaticPaths = async function () {
 }
 
 // todo: lazy hydration in serialize
-// todo: add params type: GetStaticPropsContext
-export const getStaticProps: GetStaticProps = async function ({ params }: any) {
-  const postContent = await getPostContent(params.slug, '_blog')
+export const getStaticProps: GetStaticProps = async function ({ params }: GetStaticPropsContext) {
+  const postContent = await getPostContent(params?.slug as string, '_blog')
   // todo: refactor
   const relatedPosts = await getSortedPostsData('_blog', 5, postContent.frontMatter.tags)
 
   const allPosts = await getSortedPostsData('_blog')
 
-  const currentIndex = allPosts.map((e) => e.slug).indexOf(params.slug)
+  const currentIndex = allPosts.map((e) => e.slug).indexOf(params?.slug as string)
 
   const nextPost = allPosts[currentIndex + 1]
   const prevPost = allPosts[currentIndex - 1]
