@@ -12,14 +12,14 @@ import Layout from '../../../components/layout'
 import NextCard from '../../../components/next-card'
 import { FileTextIcon } from '@radix-ui/react-icons'
 
+import CodeBlock from '../../../components/code-block'
 
 
 // Define custom components/renderers to pass to MDX,
 // then pass property `components={components}` into <MDXRemote />
-// const components = {
-//   a: CustomLink,
-//   TestComponent: dynamic(() => import('../../../components/footer')),
-// }
+const components = {
+  code: CodeBlock
+}
 
 export default function PostPage(props: PostType) {
   const { prevPost, nextPost, relatedPosts, frontMatter, ...post } = props
@@ -63,8 +63,9 @@ export default function PostPage(props: PostType) {
                 />
               </div>
             )}
+            {/* todo: modify style prose-pre: */}
             <article className="prose prose-slate dark:prose-invert max-w-none">
-              <MDXRemote compiledSource={post.compiledSource} scope={post.scope} lazy />
+              <MDXRemote compiledSource={post.compiledSource} components={components} scope={post.scope} lazy />
             </article>
             <div className="py-16">
               <div className="text-slate-500 dark:text-slate-400 text-sm">Share this article</div>
