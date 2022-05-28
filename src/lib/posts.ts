@@ -46,7 +46,7 @@ export async function getSortedPostsData(directory: PostsDirectory, limit?: numb
 
   if (tags) {
     allPostsData = allPostsData.filter((post) => {
-      const found = tags.some((tag) => post.frontMatter.tags.includes(tag))
+      const found = tags.some((tag) => post.frontMatter.tags?.includes(tag))
       return found
     })
   }
@@ -88,6 +88,19 @@ export async function getAllPostPaths(directory: PostsDirectory) {
   }))
 
   return files
+}
+
+export const getAllCategories = async (directory: PostsDirectory) => {
+  const posts = await getSortedPostsData(directory)
+  let categories: Array<string> = []
+
+  posts.map( post => {
+    post.frontMatter.tags?.map( tag => {
+      if (!categories.includes(tag)) return categories.push(tag)
+    })
+  })
+
+  return categories
 }
 
 export const getPostContent = async (slug: string, directory: string): Promise<PostType> => {

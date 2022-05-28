@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 
 import Layout, { siteTitle } from '../components/layout'
 
-export default function Home() {
+export default function HomePage() {
 
   useEffect(() => {
     localStorage.setItem('theme', 'light')

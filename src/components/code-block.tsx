@@ -40,8 +40,7 @@ SyntaxHighlighter.registerLanguage('bash', bash)
 
 
 function CodeBlock(props: CodeBlockProps) {
-  const match = /language-(\w+)/.exec(props.className?? '')
-  let lang = props.lang ? props.lang : match ? match[1] : 'js'
+  const lang = props.lang || /language-(\w+)/.exec(props.className?? '')?.at(1) || 'js'
  
 
   return  (

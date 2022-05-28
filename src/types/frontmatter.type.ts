@@ -2,7 +2,7 @@ type FrontMatter = {
   title: string
   description: string
   author: string
-  tags: string[]
+  tags?: string[]
   date: string
   toc_depth? : number
   thumb?: string
