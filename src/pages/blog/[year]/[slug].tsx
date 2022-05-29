@@ -8,8 +8,8 @@ import { MDXRemote } from 'next-mdx-remote'
 import { getAllPostPaths, getPostContent, getSortedPostsData } from '../../../lib/posts'
 import PostType from '../../../types/post.type'
 
-import Layout from '../../../components/layout'
-import NextCard from '../../../components/next-card'
+import Layout from '../../../components/layout/layout'
+import NextCard from '../../../components/blog/next-card'
 import { FileTextIcon } from '@radix-ui/react-icons'
 
 import CodeBlock from '../../../components/code-block'

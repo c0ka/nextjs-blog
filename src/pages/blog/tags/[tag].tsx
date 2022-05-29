@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout from '../../../components/layout'
+import Layout from '../../../components/layout/layout'
 import { getAllCategories, getSortedPostsData } from '../../../lib/posts'
 
-import BlogListItem from '../../../components/blog-list-item'
+import BlogListItem from '../../../components/blog/blog-list-item'
 import PostType from '../../../types/post.type'
 
 type PropsType = {

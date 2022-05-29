@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import PostType from '../types/post.type'
+import PostType from '../../types/post.type'
 
 export default function NextCard({ post, label, className }: {
   post: PostType

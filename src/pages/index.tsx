@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
 
-import Layout, { siteTitle } from '../components/layout'
+import Layout, { siteTitle } from '../components/layout/layout'
 
 export default function HomePage() {
 

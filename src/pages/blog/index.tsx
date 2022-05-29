@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 import { getSortedPostsData } from '../../lib/posts'
 import PostType from '../../types/post.type'
-import Layout from '../../components/layout'
+import Layout from '../../components/layout/layout'
 
 export default function BlogsPage({ allPostsData }: { allPostsData: PostType[] }) {
   return (

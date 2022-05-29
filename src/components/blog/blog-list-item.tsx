@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import PostType from "../types/post.type";
+import PostType from "../../types/post.type";
 
 interface Props {
   post: PostType

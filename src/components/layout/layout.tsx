@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import useTheme from '../lib/use-theme.hook'
+import { useTheme } from '../../lib/theme.provider'
 import Footer from './footer'
 import Nav from './nav'
 
@@ -17,7 +17,7 @@ interface Props {
 export default function Layout(props: Props) {
   const { hideHeader = false, hideFooter = false, children } = props
 
-  useTheme()
+  // useTheme()
 
   return (
     <div className="mx-auto mt-12 mb-24 px-4">
