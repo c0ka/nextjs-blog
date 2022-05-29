@@ -1,5 +1,5 @@
 import Link from "next/link"
-import DarkModeToggle from "../DarkModeToggle"
+import ThemeToggle from "../theme-toggle"
 
 export default function Footer() {
   return (
@@ -7,7 +7,7 @@ export default function Footer() {
       <Link href="/">
         <a>Back to home</a>
       </Link>
-      <DarkModeToggle />
+      <ThemeToggle />
     </footer>
   )    
 }

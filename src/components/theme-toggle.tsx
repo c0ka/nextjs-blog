@@ -3,7 +3,7 @@
 import { useTheme } from "../lib/theme.provider";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 
-function DarkModeToggle() {
+function ThemeToggle() {
   const { isDarkMode, toggleTheme } = useTheme()
 
   const toggleDarkMode = () => {
@@ -44,4 +44,4 @@ function DarkModeToggle() {
   )
 }
 
-export default DarkModeToggle
+export default ThemeToggle
