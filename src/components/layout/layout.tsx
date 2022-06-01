@@ -20,7 +20,7 @@ export default function Layout(props: Props) {
   // useTheme()
 
   return (
-    <div className="mx-auto mt-12 mb-24 px-4">
+    <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Learn how to build a personal website using Next.js" />
@@ -35,9 +35,11 @@ export default function Layout(props: Props) {
       </Head>
       {!hideHeader && <Nav />}
       
-      <main>{children}</main>
+      <main className="container max-w-screen-xl mx-auto">
+        {children}
+      </main>
       
       {!hideFooter && <Footer />}
-    </div>
+    </>
   )
 }

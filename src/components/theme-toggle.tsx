@@ -7,10 +7,10 @@ function ThemeToggle() {
   const { isDarkMode, toggleTheme } = useTheme()
 
   const toggleDarkMode = () => {
-    localStorage.setItem('supabaseDarkMode', (!isDarkMode).toString())
+    localStorage.setItem('theme', (!isDarkMode).toString())
     toggleTheme()
 
-    const key = localStorage.getItem('supabaseDarkMode')
+    const key = localStorage.getItem('theme')
     document.documentElement.className = key === 'true' ? 'dark' : ''
   }
 

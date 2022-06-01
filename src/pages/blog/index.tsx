@@ -12,7 +12,7 @@ export default function BlogsPage({ allPostsData }: { allPostsData: PostType[] }
       <Head>
         <title>Blog - Egotour</title>
       </Head>
-      <div className="container max-w-3xl mx-auto">
+      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <section className="prose prose-slate dark:prose-invert">
           <h2 className="text-2xl my-4">Blog</h2>
           <ul>

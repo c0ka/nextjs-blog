@@ -6,12 +6,12 @@ interface Props {
 }
 
 /**
- * a relative centered container with padding settings
+ * a relative centered container with margin settings
  */
 const SectionContainer = ({ children, className }: Props) => (
   <div
     className={classNames(
-      `container relative mx-auto py-16 md:py-24 px-6 lg:px-16 xl:px-20`,
+      `relative overflow-hidden my-16 md:my-24 mx-6 lg:mx-16 xl:mx-20`,
       className
     )}
   >

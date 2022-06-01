@@ -5,7 +5,7 @@ const name = 'Julian Hu'
 
 export default function Nav() {
   return (
-    <header className="flex flex-col items-center">
+    <header className="flex flex-col items-center mt-12">
       <Link href="/">
         <a>
           <Image

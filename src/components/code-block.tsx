@@ -12,9 +12,9 @@ import bash from 'react-syntax-highlighter/dist/cjs/languages/prism/bash'
 
 import { CopyIcon } from '@radix-ui/react-icons'
 import { ReactNode } from 'react'
+import classNames from 'classnames'
 
 export interface CodeBlockProps {
-  lang?: string,
   hideCopy?: boolean
   className?: string
   children?: ReactNode | ReactNode[]
@@ -40,14 +40,15 @@ SyntaxHighlighter.registerLanguage('bash', bash)
 
 
 function CodeBlock(props: CodeBlockProps) {
-  const lang = props.lang || /language-(\w+)/.exec(props.className?? '')?.at(1) || 'js'
- 
 
-  return  (
+  const lang = /language-(\w+)/.exec(props.className?? '')?.at(1)
+
+  return lang ? (
     <div className="relative">
       <SyntaxHighlighter 
         language={lang}
         style={darkTheme}
+        PreTag="div"
         className={`
           overflow-hidden 
           ${props.hideBorder ? '' : 'border-slate-800 dark:border-slate-300 rounded-lg border'}
@@ -87,7 +88,10 @@ function CodeBlock(props: CodeBlockProps) {
         </div>
       ) : null}
       </div>
-    )
+    ) :
+    <code className={props.className} style={props.style}> 
+      {props.children} 
+    </code>
 }
 
 export default CodeBlock

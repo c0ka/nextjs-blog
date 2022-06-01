@@ -20,7 +20,7 @@ export default function TagBlogsPage(props: PropsType) {
       <Head>
         <title>{`Blog | ${tag}`}</title>
       </Head>
-      <div className="container mx-auto px-8 py-16 sm:px-16 xl:px-20">
+      <div className="w-full px-8 py-16 sm:px-16 xl:px-20">
           <div className="flex space-x-1 text-slate-900 font-medium">
             <p className="cursor-pointer">
               <Link href="/blog">Blog</Link>

@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { HeroWithPic } from '../components/hero'
 
 import Layout, { siteTitle } from '../components/layout/layout'
 
@@ -15,8 +16,9 @@ export default function HomePage() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <div className="container max-w-screen-md mx-auto">
-        <section className="prose prose-slate dark:prose-invert">
+      <HeroWithPic />
+      <div className="w-full max-w-3xl mx-auto">
+        <section className="prose prose-slate dark:prose-invert mx-auto mt-20">
           <p>
             Hello, I&apos;m <b>Julian</b>. I&apos;m a international traveler and a translator
             (English/Chinese). You can contact me on <a href="email:julianhy@outlook.com">Email</a>.

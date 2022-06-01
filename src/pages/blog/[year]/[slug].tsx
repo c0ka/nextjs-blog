@@ -30,7 +30,7 @@ export default function PostPage(props: PostType) {
       <Head>
         <title>{frontMatter.title}</title>
       </Head>
-      <div className="container max-w-screen-xl mx-auto px-8 py-16 sm:px-16 xl:px-20">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-20">
         {/* Title and description */}
         <header className="mb-16 max-w-5xl space-y-4">
           <p className="text-violet-700 font-bold">Blog post</p>
@@ -50,9 +50,9 @@ export default function PostPage(props: PostType) {
             </div>
           )}
         </header>
-        <div className="grid grid-cols-12 gap-8">
+        <div className="grid grid-cols-6 gap-12">
           {/* Content */}
-          <main className="col-span-full lg:col-span-8 space-y-8">
+          <main className="col-span-full lg:col-span-4 space-y-8">
             {frontMatter.thumb && (
               <div className="relative mb-8 h-96 w-full overflow-auto rounded border">
                 <Image
@@ -112,7 +112,7 @@ export default function PostPage(props: PostType) {
             {nextPost && <NextCard post={nextPost} label="Next post" className="text-right" />}
           </main>
           {/* Sidebar */}
-          <div className="col-span-full lg:col-span-4">
+          <div className="col-span-full lg:col-span-2">
             <div className="space-y-8 lg:sticky lg:top-16 lg:mb-16">
               <div className="hidden lg:block">
                 {/* tag links */}
