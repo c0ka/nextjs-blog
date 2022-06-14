@@ -28,6 +28,7 @@
     "remark-gfm": "^3.0.1",
     "remark-html": "^15.0.1",
     "sharp": "^0.30.4",
+    "tailwindcss-radix": "^2.2.0",
     "underscore": "^1.13.3"
   },
   "devDependencies": {

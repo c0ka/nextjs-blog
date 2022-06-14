@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 import SectionContainer from './section-container'
+import { ReactElement } from 'react'
 
 export function Hero() {
   const { basePath } = useRouter()
@@ -19,7 +20,10 @@ export function Hero() {
   )
 }
 
-export function HeroWithPic() {
+/**
+ * Hero Section with angled image on right
+ */
+export function HeroWithPic(): ReactElement {
   return (
   <SectionContainer>
       <div className="relative z-10 bg-white pt-6 pb-8 sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32 lg:max-w-xl lg:w-full">
@@ -77,3 +81,35 @@ export function HeroWithPic() {
     </div>
   </SectionContainer>
   )}
+
+export function HeroSimple() {
+  return (
+    <SectionContainer className="bg-gray-50">
+      <div className="px-4 py-32 lg:flex lg:items-center">
+        <div className="max-w-xl mx-auto text-center">
+          <h1 className="text-3xl font-extrabold text-slate-900 sm:text-5xl">
+            Understand User Flow.
+            <strong className="font-extrabold text-red-700 sm:block">
+              Increase Conversation.
+            </strong>
+          </h1>
+
+          <p className="mt-4 sm:leading-relaxed sm:text-xl">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus numquam ea!
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4 mt-8">
+            <a className="block w-full px-12 py-3 text-sm font-medium text-white bg-red-600 rounded shadow sm:w-auto active:bg-red-500 hover:bg-red-700 focus:outline-none focus:ring"
+              href="#">
+              Get Started
+            </a>
+            <a className="block w-full px-12 py-3 text-sm font-medium text-red-600 bg-gray-100 rounded shadow sm:w-auto active:text-red-500 hover:text-red-700 hover:bg-gray-200 focus:outline-none focus:ring"
+              href="#">
+              Learn more
+            </a>
+          </div>
+        </div>
+      </div>
+    </SectionContainer>
+  )
+} 

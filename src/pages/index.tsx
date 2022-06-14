@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { HeroWithPic } from '../components/hero'
+import { HeroWithPic, HeroSimple } from '../components/hero'
 
 import Layout, { siteTitle } from '../components/layout/layout'
 
@@ -17,6 +17,7 @@ export default function HomePage() {
         <title>{siteTitle}</title>
       </Head>
       <HeroWithPic />
+      <HeroSimple />
       <div className="w-full max-w-3xl mx-auto">
         <section className="prose prose-slate dark:prose-invert mx-auto mt-20">
           <p>
@@ -32,3 +33,4 @@ export default function HomePage() {
     </Layout>
   )
 }
+
